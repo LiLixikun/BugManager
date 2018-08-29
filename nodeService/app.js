@@ -28,6 +28,15 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+app.all('*', function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By", ' 3.2.1');
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -35,14 +44,6 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   //res.writeHeader(200, { "Content-Type": "text/html;charset=utf-8" });//设置response编码为utf-8
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By", ' 3.2.1')
-  res.header("Content-Type", "application/json;charset=utf-8");
-  // render the error page
-
-
   res.status(err.status || 500);
   res.render('error');
 });
