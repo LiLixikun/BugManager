@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    主页111111111
+    list
       <router-view />
   </div>
 </template>

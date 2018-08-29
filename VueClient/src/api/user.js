@@ -1,21 +1,7 @@
-import HttpServletRequest from "../service/HttpServletRequest";
+import axios from 'axios'
 
-//此模块后期再进行二次修改独立出来单独api
+const base = ''
 
-//登陆
-export function Login(body) {
-    return HttpServletRequest({
-        url: "http://localhost:3000/login",
-        method: "POST",
-        data: body
-    })
-}
+export const getUserList = params => { console.log("----"); return axios.get("http://localhost:3000/login") }
 
-//注册
-export function Register(body) {
-    return HttpServletRequest({
-        url: "http://localhost:3000/register",
-        method: "POST",
-        data: body
-    })
-} 
+//export const getUserListPage = params => { return axios.get(`${base}/user/listpage`, { params: params }) }

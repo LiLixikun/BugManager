@@ -30,7 +30,7 @@ export default {
 </script>
 <style>
 .large {
-  width: 13.5%;
+  width: 13.4%;
   height: 79px;
   padding: 10px;
   margin: 5px;

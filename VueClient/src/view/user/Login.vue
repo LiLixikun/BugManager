@@ -1,16 +1,16 @@
 
 <script>
 import { Form } from "ant-design-vue";
-import { Login } from "../../api/user";
+
 const LoginForm = {
   methods: {
     handleSubmit(e) {
+      console.log('a');
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          Login(values)
-            .then(res => console.log(res))
-            .catch();
+          console.log("Received values of form: ", values);
+          this.$router.push({path:'/home'});
         }
       });
     }
@@ -25,7 +25,7 @@ const LoginForm = {
         class="login"
       >
         <a-form-item>
-          {getFieldDecorator("name", {
+          {getFieldDecorator("userName", {
             rules: [{ required: true, message: "请输入你的账号!" }]
           })(
             <a-input

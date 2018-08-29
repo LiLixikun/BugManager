@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
   mode: 'hash',
   routes: [
     {
@@ -80,4 +80,8 @@ export default new Router({
       ]
     }
   ]
+});
+router.beforeEach((to,from,next)=>{
+  console.log(to);
+  next()
 })

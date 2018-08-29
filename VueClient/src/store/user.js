@@ -33,7 +33,19 @@ const user = {
     actions: {
         // 登录
         getList({ commit }, userInfo) {
-           
+            return new Promise((resolve, reject) => {
+                getUserList().then(response => {
+                    const data = response.data;
+                    let payload = {
+                        list: data
+                    }
+                    console.log(data)
+                    commit('SAVE', payload)
+                    resolve()
+                }).catch(error => {
+                    reject(error)
+                })
+            })
         },
         
     }

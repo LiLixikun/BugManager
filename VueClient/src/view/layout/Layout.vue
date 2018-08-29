@@ -38,7 +38,32 @@
       </a-row>
     </a-layout-header>
     <a-layout>
-    <a-layout-sider width="200"  style="background: #fff;height:90ch"
+      
+      <a-layout-sider
+      collapsible
+      v-model="collapsed"
+    >
+       <a-menu
+            mode="inline"
+            theme="dark"
+            :defaultSelectedKeys="['']"
+            :selectedKeys = "[selectIndex]"
+            :style="{ height: '100%', borderRight: 0 }"
+          >
+            <a-menu-item key="1"><router-link to="/projectInfoMenu"><a-icon type="bars" /><span>项目概况</span> </router-link> </a-menu-item>
+            <a-menu-item key="2"><router-link to="/bugActiveMenu"><a-icon type="line-chart" /><span>活动问题</span> </router-link></a-menu-item>
+            <a-menu-item key="3"><router-link to="/bugAllMenu"><a-icon type="appstore" /><span>所有问题</span></router-link></a-menu-item>
+            <a-menu-item key="4"><router-link to="/bugStatMenu"><a-icon type="pie-chart" /><span>问题统计</span></router-link></a-menu-item>
+            <a-menu-item key="5"><router-link to="/bugAssignToMeMenu"><a-icon type="user" /><span>我的待办</span></router-link></a-menu-item>
+             <a-menu-item key="6"><router-link to="/bugFixByMeMenu"><a-icon type="skin" /><span>分配给我</span></router-link></a-menu-item>
+            <a-menu-item key="7"><router-link to="/bugAssignByMeMenu"><a-icon type="link" /><span>我的分配</span></router-link></a-menu-item>
+            <a-menu-item key="8"><router-link to="/bugFocusMenu"><a-icon type="sound" /><span>我的关注</span></router-link></a-menu-item>
+            <a-menu-item key="9"><router-link to="/noticeAllMenu"><a-icon type="pushpin-o" /><span>项目通知</span></router-link></a-menu-item>
+            <a-menu-item key="10"><router-link to="/versionMenu"><a-icon type="link" /><span>版本管理</span></router-link></a-menu-item>
+      <a-icon type="" />
+        </a-menu>
+    </a-layout-sider>
+    <!-- <a-layout-sider width="200"  style="background: #fff;height:90ch"
       :trigger="null"
       collapsible
       v-model="collapsed"
@@ -62,23 +87,21 @@
             <a-menu-item key="10"><router-link to="/versionMenu"><a-icon type="link" /><span>版本管理</span></router-link></a-menu-item>
       <a-icon type="" />
         </a-menu>
-      </a-layout-sider>
-      <a-layout style="padding: 0 24px 24px;">
-       
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
-        <a-layout-content :style="{ background: '#fff', padding: 10, margin: 0, minHeight: '280px', backgroundColor: '#f0f0f0' }">
-       <router-view></router-view>
-        </a-layout-content>
-           <a-layout-footer style="textAlign: center">
-             <div @click="add">
+      </a-layout-sider> -->
 
-               <span>11111111</span>
-             </div>
-      </a-layout-footer>
+
+
+      <a-layout style="padding: 0 24px 24px;">
+        <a-layout-content :style="{ background: '#fff', padding: 10, margin: 0, minHeight: '280px', backgroundColor: '#f0f0f0' }">
+        
+        <!--保存状态
+           <keep-alive>
+          
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive> -->
+         <router-view></router-view>
+        </a-layout-content>
+           
       </a-layout>
      
     </a-layout>
@@ -95,7 +118,7 @@ export default {
   data() {
     return {
       collapsed: false,
-      selectIndex: "4"
+      selectIndex:'0'
     };
   },
 
@@ -108,9 +131,10 @@ export default {
   },
 
   methods: {
-    add() {
-      this.selectIndex = "3";
-      alert(this.selectIndex);
+    add(){
+      
+ this.selectIndex = "3"
+ alert(this.selectIndex)
     },
     change() {
       this.parms = "我是父组件传过去的!";
@@ -124,43 +148,44 @@ export default {
     dataList(old) {
       console.log(old);
     },
-    $route(to, from) {
+    $route(to,from){
       console.log(this.selectIndex);
       window.p = this;
-      switch (to.path) {
-        case "/projectInfoMenu":
-          this.selectIndex = "1";
-          break;
-        case "/bugActiveMenu":
-          this.selectIndex = "2";
-          break;
-        case "/bugAllMenu":
-          this.selectIndex = "2";
-          break;
-        case "/bugStatMenu":
-          this.selectIndex = "4";
-          break;
-        case "/bugAssignToMeMenu":
-          this.selectIndex = "5";
-          break;
-        case "/bugFixByMeMenu":
-          this.selectIndex = "6";
-          break;
-        case "/bugAssignByMeMenu":
-          this.selectIndex = "7";
-          break;
-        case "/bugFocusMenu":
-          this.selectIndex = "8";
-          break;
-        case "/noticeAllMenu":
-          this.selectIndex = "9";
-          break;
-        case "/versionMenu":
-          this.selectIndex = "10";
-          break;
+      switch(to.path){
+        case '/projectInfoMenu':
+        this.selectIndex = "1"
+        break;
+        
+        case '/bugActiveMenu':
+         this.selectIndex = "2"
+        break;
+        case '/bugAllMenu':
+         this.selectIndex = "3"
+        break;
+        case '/bugStatMenu':
+         this.selectIndex = "4"
+        break;
+        case '/bugAssignToMeMenu':
+         this.selectIndex = "5"
+        break;
+        case '/bugFixByMeMenu':
+         this.selectIndex = "6"
+        break;
+        case '/bugAssignByMeMenu':
+         this.selectIndex = "7"
+        break;
+        case '/bugFocusMenu':
+         this.selectIndex = "8"
+        break;
+        case '/noticeAllMenu':
+         this.selectIndex = "9"
+        break;
+        case '/versionMenu':
+         this.selectIndex = "10"
+        break;
         default:
-          this.selectIndex = "0";
-          break;
+         this.selectIndex = "0"
+        break;
       }
     }
   }
@@ -184,6 +209,18 @@ export default {
   line-height: 64px;
   cursor: pointer;
   transition: color 0.3s;
+}
+
+.ant-menu-inline-collapsed
+  > .ant-menu-item-group
+  > .ant-menu-item-group-list
+  > .ant-menu-item
+  .anticon,
+.ant-menu-inline-collapsed
+  > .ant-menu-submenu
+  > .ant-menu-submenu-title
+  .anticon {
+  padding-right: 40px;
 }
 
 .ant-menu-dark.ant-menu-inline .ant-menu-item:hover {

@@ -43,15 +43,15 @@ const RegistrationForm = {
       autoCompleteResult: []
     };
   },
-  mounted() {},
+  mounted() {
+    axios.get("http://localhost:3000/login").then();
+  },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          axios.post("http://localhost:3000/register", values).then(data => {
-            console.log(data);
-          });
+          console.log("Received values of form: ", values);
         }
       });
     },
