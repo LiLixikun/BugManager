@@ -1,24 +1,18 @@
 <style lang="less" scoped>
-    .list{
-      
-    }
+ 
 </style>
 <template>
-  <div class="list">
-    list
-     
-  </div>
+   <router-view></router-view>
 </template>
 
 <script>
 export default {
-  name: "List",
+  name: "all",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+     
     };
   }
 };
 </script>
-
 

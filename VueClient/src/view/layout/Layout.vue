@@ -50,7 +50,7 @@
             :selectedKeys = "[selectIndex]"
             :style="{ height: '100%', borderRight: 0 }"
           >
-            <a-menu-item key="1"><router-link to="/projectInfoMenu"><a-icon type="bars" /><span>项目概况</span> </router-link> </a-menu-item>
+            <a-menu-item key="1"><router-link to="/projectInfoMenu/index"><a-icon type="bars" /><span>项目概况</span> </router-link> </a-menu-item>
             <a-menu-item key="2"><router-link to="/bugActiveMenu"><a-icon type="line-chart" /><span>活动问题</span> </router-link></a-menu-item>
             <a-menu-item key="3"><router-link to="/bugAllMenu"><a-icon type="appstore" /><span>所有问题</span></router-link></a-menu-item>
             <a-menu-item key="4"><router-link to="/bugStatMenu"><a-icon type="pie-chart" /><span>问题统计</span></router-link></a-menu-item>
@@ -63,36 +63,9 @@
       <a-icon type="" />
         </a-menu>
     </a-layout-sider>
-    <!-- <a-layout-sider width="200"  style="background: #fff;height:90ch"
-      :trigger="null"
-      collapsible
-      v-model="collapsed"
-      >
-        <a-menu
-            mode="inline"
-            theme="dark"
-            :defaultSelectedKeys="['']"
-            :selectedKeys = "[selectIndex]"
-            :style="{ height: '100%', borderRight: 0 }"
-          >
-            <a-menu-item key="1"><router-link to="/projectInfoMenu"><a-icon type="bars" /><span>项目概况</span> </router-link> </a-menu-item>
-            <a-menu-item key="2"><router-link to="/bugActiveMenu"><a-icon type="line-chart" /><span>活动问题</span> </router-link></a-menu-item>
-            <a-menu-item key="3"><router-link to="/bugAllMenu"><a-icon type="appstore" /><span>所有问题</span></router-link></a-menu-item>
-            <a-menu-item key="4"><router-link to="/bugStatMenu"><a-icon type="pie-chart" /><span>问题统计</span></router-link></a-menu-item>
-            <a-menu-item key="5"><router-link to="/bugAssignToMeMenu"><a-icon type="user" /><span>我的待办</span></router-link></a-menu-item>
-             <a-menu-item key="6"><router-link to="/bugFixByMeMenu"><a-icon type="skin" /><span>分配给我</span></router-link></a-menu-item>
-            <a-menu-item key="7"><router-link to="/bugAssignByMeMenu"><a-icon type="link" /><span>我的分配</span></router-link></a-menu-item>
-            <a-menu-item key="8"><router-link to="/bugFocusMenu"><a-icon type="sound" /><span>我的关注</span></router-link></a-menu-item>
-            <a-menu-item key="9"><router-link to="/noticeAllMenu"><a-icon type="pushpin-o" /><span>项目通知</span></router-link></a-menu-item>
-            <a-menu-item key="10"><router-link to="/versionMenu"><a-icon type="link" /><span>版本管理</span></router-link></a-menu-item>
-      <a-icon type="" />
-        </a-menu>
-      </a-layout-sider> -->
-
-
-
-      <a-layout style="padding: 0 24px 24px;">
-        <a-layout-content :style="{ background: '#fff', padding: 10, margin: 0, minHeight: '280px', backgroundColor: '#f0f0f0' }">
+ 
+    <a-layout style="padding: 0 24px 24px;">
+      <a-layout-content :style="{ background: '#fff', padding: 10, margin: 0, minHeight: '280px', backgroundColor: '#f0f0f0' }">
         
         <!--保存状态
            <keep-alive>
@@ -133,8 +106,8 @@ export default {
   methods: {
     add(){
       
- this.selectIndex = "3"
- alert(this.selectIndex)
+      this.selectIndex = "3"
+      alert(this.selectIndex)
     },
     change() {
       this.parms = "我是父组件传过去的!";
@@ -150,9 +123,11 @@ export default {
     },
     $route(to,from){
       console.log(this.selectIndex);
-      window.p = this;
+      
       switch(to.path){
-        case '/projectInfoMenu':
+        case '/projectInfoMenu/index':
+        this.selectIndex = "1"
+        case '/projectInfoMenu/list':
         this.selectIndex = "1"
         break;
         

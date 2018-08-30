@@ -64,7 +64,6 @@ import {router} from './router/index';
 import store from './store';
 import './mock';
 import './base.less';
-
 Vue.config.productionTip = false
 Vue.component(Affix.name, Affix) // a-affix
 Vue.component(Anchor.name, Anchor)

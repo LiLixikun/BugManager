@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
-export const router = new Router({
+export const router =  new Router({
   mode: 'hash',
   routes: [
     {
@@ -22,8 +22,22 @@ export const router = new Router({
         },
         {
           path: "projectInfoMenu",
-          component: () => import("../view/projectInfoMenu/index.vue"),
+          component: () => import("../view/projectInfoMenu/all.vue"),
+          children:[
+            {
+              path: "index",
+              component: () => import("../view/projectInfoMenu/index.vue"),
+            },
+            {
+            name:'list',
+            path: "list",
+            component: () => import("../view/projectInfoMenu/list.vue"),
+          }]
         },
+        // {
+        //   path: "projectInfoMenu/list/:id",
+        //   component: () => import("../view/projectInfoMenu/list.vue"),
+        // },
         {
           path: "bugActiveMenu",
           component: () => import("../view/bugActiveMenu/index.vue"),
@@ -80,8 +94,15 @@ export const router = new Router({
       ]
     }
   ]
-});
-router.beforeEach((to,from,next)=>{
-  console.log(to);
-  next()
 })
+
+router.beforeEach((to, from, next) => {
+ 
+  next();
+});
+
+router.afterEach((to) => {
+  
+  window.scrollTo(0, 0);
+});
+
